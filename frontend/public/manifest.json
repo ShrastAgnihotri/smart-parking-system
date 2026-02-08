@@ -1,0 +1,8 @@
+{ 
+  "short_name": "Parking System", 
+  "name": "Smart Parking Lot System", 
+  "start_url": ".", 
+  "display": "standalone", 
+  "theme_color": "#000000", 
+  "background_color": "#ffffff" 
+} 
