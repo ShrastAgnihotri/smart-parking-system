@@ -17,7 +17,8 @@ const SlotList = () => {
     }));
   };
 
-  const filteredSlots = slots.filter(slot => {
+  // const filteredSlots = slots.filter(slot => {
+    const filteredSlots = (slots || []).filter(slot => {
     if (filters.showAvailable && slot.status && !slot.status.includes('Available')) return false;
     if (filters.showOccupied && slot.status && !slot.status.includes('Occupied')) return false;
     if (filters.showCovered && slot.features && !slot.features.includes('Covered')) return false;
@@ -40,7 +41,8 @@ const SlotList = () => {
   return (
     <div className="card">
       <div className="slot-list-header">
-        <h2>🅿️ All Parking Slots ({slots.length})</h2>
+        {/* <h2>🅿️ All Parking Slots ({slots.length})</h2> */}
+        <h2>🅿️ All Parking Slots ({slots?.length || 0})</h2>
         
         <div className="filters-container">
           <button
@@ -70,7 +72,8 @@ const SlotList = () => {
         </div>
       </div>
 
-      {loading && slots.length === 0 ? (
+      {/* {loading && slots.length === 0 ? ( */}
+      {loading && (slots?.length || 0) === 0 ? (
         <div className="loading-container">
           <div className="spinner"></div>
           <p className="loading-text">Loading slots...</p>
@@ -145,19 +148,20 @@ const SlotList = () => {
         </div>
       )}
 
-      {slots.length > 0 && (
+      {/* {slots.length > 0 && ( */}
+      {(slots?.length || 0) > 0 && (
         <div className="summary-bar">
           <div>
             <span className="summary-label">Available:</span>{' '}
-            <span className="summary-value">{slots.filter(s => s.status && s.status.includes('Available')).length}</span>
+            <span className="summary-value">{(slots || []).filter(s => s.status && s.status.includes('Available')).length}</span>
           </div>
           <div>
             <span className="summary-label">Occupied:</span>{' '}
-            <span className="summary-value">{slots.filter(s => s.status && s.status.includes('Occupied')).length}</span>
+            <span className="summary-value">{(slots || []).filter(s => s.status && s.status.includes('Occupied')).length}</span>
           </div>
           <div>
             <span className="summary-label">Showing:</span>{' '}
-            <span className="summary-value">{filteredSlots.length}/{slots.length}</span>
+            <span className="summary-value">{filteredSlots.length}/{slots?.length || 0}</span>
           </div>
         </div>
       )}
