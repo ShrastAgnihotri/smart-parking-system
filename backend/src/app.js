@@ -27,6 +27,17 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
+
+app.get("/", (req, res) => {
+  res.send("🚀 Smart Parking Backend is running!");
+});
+
+
+
+
+
+
 // API Routes
 app.use('/api/parking', parkingRoutes);
 app.use('/api/vehicle', vehicleRoutes);
